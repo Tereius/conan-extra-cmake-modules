@@ -2,7 +2,7 @@ import os
 from conans import ConanFile, CMake, tools
 
 class ExtracmakemodulesConan(ConanFile):
-    version = "5.87.0"
+    version = "5.90.0"
     name = "extra-cmake-modules"
     license = ("MIT", "BSD-2-Clause", "BSD-3-Clause")
     url = "https://github.com/conan-io/conan-center-index"
