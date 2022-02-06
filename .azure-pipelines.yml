@@ -10,7 +10,7 @@ jobs:
   strategy:
     matrix:
       Linux:
-        imageName: "ubuntu-16.04"
+        imageName: "ubuntu-18.04"
         conanBuildOS: "Linux"
   pool:
     vmImage: '$(imageName)'
@@ -29,7 +29,7 @@ jobs:
   - Build
   condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
   pool:
-    vmImage: "ubuntu-16.04"
+    vmImage: "ubuntu-18.04"
   steps:
   - template: uploadConanRecipe.yml@templates
     parameters: 
