@@ -9,6 +9,7 @@ class ExtracmakemodulesConan(ConanFile):
     homepage = "https://api.kde.org/ecm/"
     topics = ("conan", "cmake", "toolchain", "build-settings")
     description = "KDE's CMake modules"
+    settings = ("os")
     generators = "cmake"
     no_copy_source = False
 
@@ -30,7 +31,10 @@ class ExtracmakemodulesConan(ConanFile):
         tools.replace_path_in_file(os.path.join(self._source_subfolder, "CMakeLists.txt"),
             "install(FILES ${installFindModuleFiles} DESTINATION ${FIND_MODULES_INSTALL_DIR})", "")
 
-        self._cmake = CMake(self)
+        if self.settings.os == 'Android':
+            self._cmake = CMake(self, generator="Unix Makefiles")
+        else:
+            self._cmake = CMake(self)
         self._cmake.definitions["BUILD_HTML_DOCS"] = False
         self._cmake.definitions["BUILD_QTHELP_DOCS"] = False
         self._cmake.definitions["BUILD_MAN_DOCS"] = False
